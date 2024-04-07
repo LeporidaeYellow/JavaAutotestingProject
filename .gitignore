@@ -28,3 +28,6 @@ replay_pid*
 /gradlew.bat
 /.gradle/
 /gradle/
+/testFile.txt
+/allure-results/
+/build/
