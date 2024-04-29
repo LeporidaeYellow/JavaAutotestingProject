@@ -1,6 +1,8 @@
 package pages;
 
 import components.FooterComponent;
+import extensions.AllureExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;

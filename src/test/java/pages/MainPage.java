@@ -18,6 +18,10 @@ public class MainPage extends BasePage{
     @CacheLookup
     WebElement loginFormButton;
 
+    @FindBy(linkText = "Download files")
+    @CacheLookup
+    WebElement downloadFilesButton;
+
     FooterComponent footer;
     HeaderComponent header;
 
@@ -39,6 +43,12 @@ public class MainPage extends BasePage{
         click(loginFormButton);
         assertThat(driver.getCurrentUrl()).isEqualTo("https://bonigarcia.dev/selenium-webdriver-java/login-form.html");
         return new LoginPage(driver);
+    }
+
+    public DownloadFilesPage downloadFilesPage() {
+        click(downloadFilesButton);
+        assertThat(driver.getCurrentUrl()).isEqualTo("https://bonigarcia.dev/selenium-webdriver-java/download.html");
+        return new DownloadFilesPage(driver);
     }
 
     public HeaderComponent header() {

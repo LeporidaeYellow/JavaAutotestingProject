@@ -31,3 +31,7 @@ replay_pid*
 /testFile.txt
 /allure-results/
 /build/
+/selenium-jupiter.pdf
+/selenium-jupiter.png
+/webdrivermanager.pdf
+/webdrivermanager.png

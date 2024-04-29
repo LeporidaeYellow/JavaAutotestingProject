@@ -90,4 +90,12 @@ public class BasePage {
         }
         return true;
     }
+
+    public void downloadFile(WebElement element) {
+        String href = element.getAttribute("href");
+    }
+
+    public WebDriver getDriver() {
+        return driver;
+    }
 }

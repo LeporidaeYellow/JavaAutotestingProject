@@ -1,13 +1,22 @@
+import extensions.AllureExtension;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import pages.LoginPage;
 import pages.MainPage;
+import steps.BaseSteps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SeleniumPageObjectsLoginFormTests {
+@Feature("Allure report")
+@ExtendWith(AllureExtension.class)
+@Story("Login")
+class SeleniumPageObjectsLoginFormTests extends BaseSteps {
     MainPage mainPage;
 
     @BeforeEach
@@ -20,6 +29,7 @@ class SeleniumPageObjectsLoginFormTests {
         mainPage.quit();
     }
 
+    @Step("Login Success")
     @Test
     void loginSuccessTest() {
         LoginPage login = mainPage.loginFormPage();
@@ -28,6 +38,7 @@ class SeleniumPageObjectsLoginFormTests {
         assertThat(login.invalidCredentialsBoxPresent()).isFalse();
     }
 
+    @Step("Login Failure")
     @Test
     void loginFailureTest() {
         LoginPage login = mainPage.loginFormPage();
@@ -36,12 +47,14 @@ class SeleniumPageObjectsLoginFormTests {
         assertThat(login.invalidCredentialsBoxPresent()).isTrue();
     }
 
+    @Step("Login Page Titles")
     @Test
     void loginPageTitlesTest() {
         Assertions.assertTrue(mainPage.header().isTitleText("Hands-On Selenium WebDriver with Java"));
         Assertions.assertTrue(mainPage.header().isSubTitleText("Practice site"));
     }
 
+    @Step("Login Page Footer Text")
     @Test
     void loginPageFooterTextTest() {
         Assertions.assertTrue(mainPage.footer().isFooterText("Copyright © 2021-2023 Boni García"));

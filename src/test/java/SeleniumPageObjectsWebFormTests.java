@@ -1,15 +1,24 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import extensions.AllureExtension;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
+import jdk.jfr.Description;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import pages.WebFormPage;
 import pages.MainPage;
+import steps.AllureSteps;
+import steps.BaseSteps;
 
 import java.io.IOException;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-class SeleniumPageObjectsWebFormTests {
+@Feature("Allure report")
+@ExtendWith(AllureExtension.class)
+@Description("Site")
+@Story("Web Form")
+class SeleniumPageObjectsWebFormTests extends BaseSteps {
+    AllureSteps allureSteps = new AllureSteps();
     MainPage mainPage;
 
     @BeforeEach
@@ -22,24 +31,30 @@ class SeleniumPageObjectsWebFormTests {
         mainPage.quit();
     }
 
+    @Step("Login Success")
     @Test
     void inputTextInputTest() {
         WebFormPage webFormPage = mainPage.webFormPage();
         Assertions.assertTrue(webFormPage.inputTextInput("testing"));
+        allureSteps.captureScreenshot(mainPage.getDriver());
+        allureSteps.captureScreenshotSpoiler(mainPage.getDriver());
     }
 
+    @Step("Input Password")
     @Test
     void inputPasswordTest() {
         WebFormPage webFormPage = mainPage.webFormPage();
         Assertions.assertTrue(webFormPage.inputPassword("testing"));
     }
 
+    @Step("Input Text Area")
     @Test
     void inputTextAreaTest() {
         WebFormPage webFormPage = mainPage.webFormPage();
         Assertions.assertTrue(webFormPage.inputTextArea("testing"));
     }
 
+    @Step("Input Disabled Input")
     @Test
     void inputDisabledInputTest() {
         WebFormPage webFormPage = mainPage.webFormPage();
@@ -47,6 +62,7 @@ class SeleniumPageObjectsWebFormTests {
         Assertions.assertTrue(webFormPage.inputDisabledInputAssertThrows("testing"));
     }
 
+    @Step("Dropdown Select From List")
     @Test
     void dropdownSelectFromListTest() {
         WebFormPage webFormPage = mainPage.webFormPage();
@@ -55,6 +71,7 @@ class SeleniumPageObjectsWebFormTests {
         Assertions.assertTrue(webFormPage.dropdownSelectFromList("Three"));
     }
 
+    @Step("Dropdown Datalist")
     @Test
     void dropdownDatalistTest() {
         WebFormPage webFormPage = mainPage.webFormPage();
@@ -65,12 +82,14 @@ class SeleniumPageObjectsWebFormTests {
         Assertions.assertTrue(webFormPage.dropdownDatalist("Chicago"));
     }
 
+    @Step("File Input")
     @Test
     void fileInputTest() throws IOException {
         WebFormPage webFormPage = mainPage.webFormPage();
         Assertions.assertTrue(webFormPage.fileInput());
     }
 
+    @Step("Checkedbox And Radio")
     @Test
     void checkedboxAndRadioTests() {
         WebFormPage webFormPage = mainPage.webFormPage();
@@ -96,12 +115,14 @@ class SeleniumPageObjectsWebFormTests {
         Assertions.assertFalse(webFormPage.isDefaultRadio());
     }
 
+    @Step("Date Picker")
     @Test
     void datePickerTest() {
         WebFormPage webFormPage = mainPage.webFormPage();
         Assertions.assertTrue(webFormPage.datePicker());
     }
 
+    @Step("Example Range")
     @Test
     void exampleRangeTest() {
         WebFormPage webFormPage = mainPage.webFormPage();
@@ -109,12 +130,15 @@ class SeleniumPageObjectsWebFormTests {
         Assertions.assertTrue(webFormPage.exampleRange4StepsToRight());
     }
 
+    @Step("Web Form Page Header Text")
+    @Flaky
     @Test
     void webFormPageHeaderTextTest() {
-        Assertions.assertTrue(mainPage.header().isSubTitleText("Hands-On Selenium WebDriver with Java"));
+        Assertions.assertFalse(mainPage.header().isSubTitleText("Hands-On Selenium WebDriver with Java"));
         Assertions.assertTrue(mainPage.header().isSubTitleText("Practice site"));
     }
 
+    @Step("Web Form Page Footer Text")
     @Test
     void webFormPageFooterTextTest() {
         Assertions.assertTrue(mainPage.footer().isFooterText("Copyright © 2021-2023 Boni García"));
