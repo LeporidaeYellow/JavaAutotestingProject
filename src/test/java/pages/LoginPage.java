@@ -1,8 +1,6 @@
 package pages;
 
 import components.HeaderComponent;
-import extensions.AllureExtension;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;

@@ -11,6 +11,7 @@ import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import pages.BasePage;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -31,7 +32,7 @@ public class AllureSteps {
 
     @Step("Capture screenshot (extension)")
     public void captureScreenshotSpoiler() {
-        Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) BaseSteps.getDriver()).getScreenshotAs(OutputType.BYTES)));
+        Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) BasePage.getDriver()).getScreenshotAs(OutputType.BYTES)));
     }
 
     @Step("Download file: {destination}")
