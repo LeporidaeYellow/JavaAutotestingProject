@@ -1,20 +1,35 @@
 package models;
 
+import lombok.ToString;
 
+@ToString
 public class Category {
-    Integer id;
-    String name;
+    private Long id;
+    private String name;
 
-    public Category(Integer id, String name) {
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public Category() {
+    }
+
+    /**
+     *
+     * @param name
+     * @param id
+     */
+    public Category(Long id, String name) {
+        super();
         this.id = id;
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -24,13 +39,5 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "\"id\": " + id +
-                ", \"name\": \"" + name + '\"' +
-                '}';
     }
 }

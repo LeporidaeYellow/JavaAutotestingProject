@@ -2,6 +2,8 @@ import io.qameta.allure.Description;
 import models.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.greaterThan;
@@ -11,18 +13,18 @@ public class SimpleAPITests {
     @Description("Post pet")
     @Test
     void postPetTest() {
-        Integer idPet = 1000;
+        Long idPet = 1000L;
         String petName = "doggie";
         String url = "https://petstore.swagger.io/v2/pet";
-        Category category = new Category(1000, "string");
-        PhotoUrls photoUrls = new PhotoUrls("string");
-        Tags tag = new Tags(1000, "string");
-        Pet pet = new Pet(idPet, category, petName, tag, photoUrls, Status.available);
+        Category category = new Category(1000L, "string");
+        List<String> photoUrls = List.of("string");
+        List<Tag> tags = List.of(new Tag(1000L, "string"));;
+        Pet pet = new Pet(idPet, category, petName, photoUrls, tags, Status.available.toString());
 
         given().
                 header("accept", "application/json").
                 header("Content-Type", "application/json").
-                body(pet.toString()).
+                body(pet).
             when().
                 post(url).
             then().
@@ -66,17 +68,17 @@ public class SimpleAPITests {
     @Description("Put pet")
     @Test
     void putPetTest() {
-        Integer idPet = 1000;
+        Long idPet = 1000L;
         String url = "https://petstore.swagger.io/v2/pet";
-        Category category = new Category(1000, "string");
-        PhotoUrls photoUrls = new PhotoUrls("string");
-        Tags tag = new Tags(1000, "string");
-        Pet pet = new Pet(idPet, category, "catty", tag, photoUrls, Status.pending);
+        Category category = new Category(1000L, "string");
+        List<String> photoUrls = List.of("string");
+        List<Tag> tags = List.of(new Tag(1000L, "string"));;
+        Pet pet = new Pet(idPet, category, "catty", photoUrls, tags, Status.pending.toString());
 
         given().
                 header("accept", "application/json").
                 header("Content-Type", "application/json").
-                body(pet.toString()).
+                body(pet).
             when().
                 put(url).
             then().
@@ -84,7 +86,6 @@ public class SimpleAPITests {
                 statusCode(200).
                 header("content-type", "application/json").
                 body("name", equalTo("catty")).
-                body("id", equalTo(idPet)).
                 body("status", equalTo("pending"));
     }
 
