@@ -9,15 +9,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import pages.WebFormPage;
 import pages.MainPage;
 import steps.AllureSteps;
-import steps.BaseSteps;
-
 import java.io.IOException;
 
 @Feature("Allure report")
 @ExtendWith(AllureExtension.class)
 @Description("Site")
 @Story("Web Form")
-class SeleniumPageObjectsWebFormTests extends BaseSteps {
+class SeleniumPageObjectsWebFormTests {
     AllureSteps allureSteps = new AllureSteps();
     MainPage mainPage;
 

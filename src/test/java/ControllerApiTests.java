@@ -77,4 +77,21 @@ class ControllerApiTests {
         assertThat(actualPet).usingRecursiveComparison().ignoringFields("id").isEqualTo(DEFAULT_PET);
     }
 
+    @Test
+    @Tag("extended")
+    @DisplayName("Check pet was put correctly")
+    void checkPutchPetExtendedTest() {
+        Response addPetResponse = petController.addPet(DEFAULT_PET);
+        long expectedId = Long.parseLong(addPetResponse.jsonPath().getString("id"));
+        assertThat(addPetResponse.statusCode()).isEqualTo(200);
+
+        Response getPetResponse = petController.getPetById(expectedId);
+        Pet actualPet = getPetResponse.as(Pet.class);
+        actualPet.setName("putName");
+
+        Response putPetResponse = petController.putPet(actualPet);
+
+        assertThat(putPetResponse.statusCode()).isEqualTo(200);
+        assertThat(putPetResponse.getBody().jsonPath().get("name").equals("putName"));
+    }
 }

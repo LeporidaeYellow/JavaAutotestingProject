@@ -9,14 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.LoginPage;
 import pages.MainPage;
-import steps.BaseSteps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Feature("Allure report")
 @ExtendWith(AllureExtension.class)
 @Story("Login")
-class SeleniumPageObjectsLoginFormTests extends BaseSteps {
+class SeleniumPageObjectsLoginFormTests {
     MainPage mainPage;
 
     @BeforeEach

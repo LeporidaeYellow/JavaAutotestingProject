@@ -53,7 +53,6 @@ class FluentControllerApiTests {
                 .statusCodeIs(200)
                 .jsonValueIs("id", expectedId)
                 .jsonValueIs("username", DEFAULT_USER.getUsername())
-                //...
                 .jsonValueIs("email", DEFAULT_USER.getEmail());
     }
 
@@ -69,7 +68,6 @@ class FluentControllerApiTests {
                 .statusCodeIs(200)
                 .jsonValueIs("id", expectedId.toString())
                 .jsonValueIs("name", DEFAULT_PET.getName())
-                //...
                 .jsonValueIs("status", DEFAULT_PET.getStatus());
     }
 }

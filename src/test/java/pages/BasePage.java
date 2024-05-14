@@ -15,13 +15,14 @@ import static org.slf4j.LoggerFactory.getLogger;
 public class BasePage {
     static final Logger log = getLogger(lookup().lookupClass());
 
-    WebDriver driver;
-    WebDriverWait wait;
-    int timeoutSec = 5;
+    static WebDriver driver;
+    static WebDriverWait wait;
+    int timeoutSec = 8;
 
 
     public BasePage(String browser) {
         driver = WebDriverFactory.createWebDriver(browser);
+        driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutSec));
     }
 
@@ -95,7 +96,12 @@ public class BasePage {
         String href = element.getAttribute("href");
     }
 
-    public WebDriver getDriver() {
+    public static WebDriver getDriver() {
         return driver;
+    }
+
+
+    public static WebDriverWait getWait() {
+        return wait;
     }
 }

@@ -10,7 +10,6 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import models.Pet;
 
-
 import static io.restassured.RestAssured.given;
 import static testdata.ApiTestData.DEFAULT_PET;
 
@@ -20,6 +19,7 @@ public class PetController {
 
     public PetController() {
         RestAssured.defaultParser = Parser.JSON;
+        this.requestSpecification.header("api_key", config.getApiKey());
         this.requestSpecification.contentType(ContentType.JSON);
         this.requestSpecification.accept(ContentType.JSON);
         this.requestSpecification.baseUri(config.getBaseUrl());
@@ -46,5 +46,11 @@ public class PetController {
     @Step("Delete pet by name")
     public Response deletePetByName(Long id) {
         return given(this.requestSpecification).delete(String.format("pet/" + id)).andReturn();
+    }
+
+    @Step("Put pet")
+    public Response putPet(Pet pet) {
+        this.requestSpecification.body(pet);
+        return given(this.requestSpecification).put(String.format("pet/")).andReturn();
     }
 }

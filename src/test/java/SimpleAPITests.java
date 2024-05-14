@@ -1,15 +1,12 @@
 import io.qameta.allure.Description;
 import models.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.greaterThan;
 
 public class SimpleAPITests {
-
     @Description("Post pet")
     @Test
     void postPetTest() {
