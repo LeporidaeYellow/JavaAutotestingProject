@@ -23,11 +23,9 @@
 hs_err_pid*
 replay_pid*
 /.idea/
-/gradle/wrapper/gradle-wrapper.properties
-/.gradle/
-/gradle/
 /testFile.txt
 /allure-results/
 /build/
 /webdrivermanager.pdf
 /webdrivermanager.png
+/.gradle/
