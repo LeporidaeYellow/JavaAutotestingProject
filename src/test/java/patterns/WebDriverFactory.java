@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverFactory {
     public static WebDriver createWebDriver(String browser) {
+//        System.setProperty("webdriver.chrome.driver", "tools/chromedriver");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--window-size=4000,2000");
         WebDriver chrome = new ChromeDriver(chromeOptions);

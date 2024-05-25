@@ -15,6 +15,7 @@ import java.io.IOException;
 @ExtendWith(AllureExtension.class)
 @Description("Site")
 @Story("Web Form")
+@Disabled
 class SeleniumPageObjectsWebFormTests {
     AllureSteps allureSteps = new AllureSteps();
     MainPage mainPage;

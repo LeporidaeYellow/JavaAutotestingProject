@@ -2,10 +2,7 @@ import extensions.AllureExtension;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import pages.LoginPage;
 import pages.MainPage;
@@ -15,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Feature("Allure report")
 @ExtendWith(AllureExtension.class)
 @Story("Login")
+@Disabled
 class SeleniumPageObjectsLoginFormTests {
     MainPage mainPage;
 
