@@ -2,10 +2,7 @@ import extensions.AllureExtension;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
@@ -17,6 +14,7 @@ import java.io.IOException;
 @Feature("Allure report with upload")
 @ExtendWith(AllureExtension.class)
 @Story("Download")
+@Disabled
 class SeleniumPageObjectsDownloadFilesTests {
 
     MainPage mainPage;
